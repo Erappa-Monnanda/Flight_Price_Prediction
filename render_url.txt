@@ -1,0 +1,3 @@
+Project deployed on render
+
+https://flight-price-prediction-dtuj.onrender.com
