@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        select, input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flight Price Prediction</h1>
+        <form action="/predict" method="post">
+            
+            <!-- Journey Date Inputs -->
+            <label for="Journey_Day">Journey Day (1-31):</label>
+            <input type="number" name="Journey_Day" min="1" max="31" required>
+
+            <label for="Journey_Month">Journey Month (1-12):</label>
+            <input type="number" name="Journey_Month" min="1" max="12" required>
+
+            <label for="Dep_Hour">Departure Hour (0-23):</label>
+            <input type="number" name="Dep_Hour" min="0" max="23" required>
+
+            <!-- Source Selection -->
+            <label for="Source">Select Source:</label>
+            <select name="Source" required>
+                <option value="" disabled selected>Choose source</option>
+                <option value="Banglore">Bangalore</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Mumbai">Mumbai</option>
+            </select>
+
+            <!-- Destination Selection -->
+            <label for="Destination">Select Destination:</label>
+            <select name="Destination" required>
+                <option value="" disabled selected>Choose destination</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Banglore">Bangalore</option>
+                <option value="Cochin">Cochin</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select>
+
+            <!-- Airline Selection -->
+            <label for="Airline">Select Airline:</label>
+            <select name="Airline" required>
+                <option value="" disabled selected>Choose an airline</option>
+                <option value="IndiGo">IndiGo</option>
+                <option value="Air India">Air India</option>
+                <option value="Jet Airways">Jet Airways</option>
+                <option value="SpiceJet">SpiceJet</option>
+                <option value="Multiple carriers">Multiple carriers</option>
+                <option value="GoAir">GoAir</option>
+                <option value="Vistara">Vistara</option>
+                <option value="Air Asia">Air Asia</option>
+                <option value="Vistara Premium economy">Vistara Premium economy</option>
+                <option value="Jet Airways Business">Jet Airways Business</option>
+                <option value="Multiple carriers Premium economy">Multiple carriers Premium economy</option>
+            </select>
+
+            <!-- Duration in Minutes -->
+            <label for="Duration">Duration (minutes):</label>
+            <input type="number" name="Duration" min="0" required>
+
+            <!-- Total Stops -->
+            <label for="Total_Stops">Total Stops:</label>
+            <input type="number" name="Total_Stops" min="0" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Display Prediction Result -->
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
